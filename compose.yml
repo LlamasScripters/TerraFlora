@@ -26,9 +26,11 @@ services:
       - MONGODB_CONNECTION_STRING=mongodb://mongo:27017/terraflora?authSource=admin
       - MONGODB_USER=root
       - MONGODB_PASSWORD=password
+      - JWT_SECRET_KEY=secret
 
   postgres:
     image: postgres
+    restart: on-failure
     ports:
       - "5432:5432"
     volumes:
@@ -44,7 +46,7 @@ services:
     ports:
       - 8080:8080
 
-  mongo: 
+  mongo:
     image: mongo
     ports:
       - 127.0.0.1:27017:27017
